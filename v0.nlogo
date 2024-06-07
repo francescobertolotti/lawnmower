@@ -22,9 +22,16 @@ extensions [profiler]
 
 __includes [ "lawnmower_behaviour.nls" "setup_functions.nls"]
 
+breed [ lawnmowers lawnmower ]
 
 patches-own [
 
+
+]
+
+lawnmowers-own [
+  speed
+  turning-angle
 
 ]
 
@@ -92,7 +99,7 @@ end
 
 
 to go
-
+  movement
 
   tick
 end
