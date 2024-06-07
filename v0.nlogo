@@ -25,7 +25,8 @@ __includes [ "lawnmower_behaviour.nls" "setup_functions.nls"]
 breed [ lawnmowers lawnmower ]
 
 patches-own [
-
+  is-border
+  grass-level
 
 ]
 
@@ -36,6 +37,7 @@ lawnmowers-own [
 ]
 
 globals [
+
 
 ]
 
@@ -62,19 +64,12 @@ globals [
 to setup
   clear-all
   print "******************************* NEW SIMULATON *******************************"
-  creation-world
+  creation-garden
+  creation-lawnmowers
 
   reset-ticks
 end
 
-to creation-world
-  resize-world 0 size-world 0 size-world
-  set-patch-size 300 / size-world
-  ask patches [ set pcolor lime ]
-
-
-
-end
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -100,7 +95,7 @@ end
 
 to go
   movement
-
+  grass-regrowth
   tick
 end
 
@@ -143,9 +138,9 @@ to use-profiler
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
-266
+431
 10
-580
+745
 325
 -1
 -1
@@ -265,6 +260,96 @@ size-world
 10
 1
 patches
+HORIZONTAL
+
+SLIDER
+12
+216
+301
+249
+n-lawnmowers
+n-lawnmowers
+1
+10
+1.0
+1
+1
+lawnmowers
+HORIZONTAL
+
+SLIDER
+13
+250
+301
+283
+grass-growth-rate
+grass-growth-rate
+0
+0.1
+0.1
+0.01
+1
+cm per 1000 ticks
+HORIZONTAL
+
+SLIDER
+12
+287
+302
+320
+starting-x
+starting-x
+0
+100
+50.0
+1
+1
+patches
+HORIZONTAL
+
+SLIDER
+10
+323
+301
+356
+starting-y
+starting-y
+0
+100
+50.0
+1
+1
+patches
+HORIZONTAL
+
+SLIDER
+9
+358
+303
+391
+speed-lawnmowers
+speed-lawnmowers
+0.1
+2
+2.0
+0.1
+1
+patches per tick
+HORIZONTAL
+
+SLIDER
+6
+393
+302
+426
+turning-angle-lawnmowers
+turning-angle-lawnmowers
+0
+45
+45.0
+0.5
+1
+degrees
 HORIZONTAL
 
 @#$#@#$#@

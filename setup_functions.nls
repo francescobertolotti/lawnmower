@@ -1,8 +1,26 @@
-to create_garden
+to creation-garden
 
+    resize-world 0 size-world 0 size-world
+    set-patch-size 300 / size-world
+    ask patches [ set pcolor green ]
+
+
+
+
+
+end
+
+to creation-lawnmowers
     
-
-
+    create-lawnmowers n-lawnmowers [
+        set size 1
+        set color black
+        setxy starting-x starting-y
+        set shape "circle"
+        set speed speed-lawnmowers
+        set turning-angle turning-angle-lawnmowers
+        
+    ]
 
 
 

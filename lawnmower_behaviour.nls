@@ -1,6 +1,36 @@
 to movement
 
-    
+    ask lawnmowers [
+        ; first, I check if advancing would make me hit a wall (a patch with is_border = true)
+        let movement-left speed
+        if [is-border] of patch-ahead speed [
+            ; I advance as much as I can
+            let distance-to-border distance patch-ahead speed
+            set movement-left movement-left - distance-to-border
+            fd distance-to-border
 
 
+            ; if I would hit a wall, I turn of my turing angle right or left randomly
+            ifelse random 2 = 0 [ rt random turning-angle] [ lt random turning-angle ]
+        ]
+
+        ; then, I move forward
+        fd movement-left
+
+    ]
+
+
+end
+
+to grass-regrowth
+    ask patches with [grass-level < 1] [
+        set grass-level grass-level + grass-regrowth-rate
+        set grass-level min list 1 grass-level
+    ]
+end
+
+to color-grass
+    ask patches [
+        set pcolor 60 - 5 * grass-level
+    ]
 end
